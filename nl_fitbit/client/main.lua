@@ -270,27 +270,27 @@ Citizen.CreateThread(function()
                          thirst = status.val / 10000 
                     end)
 
-                    ESX.TriggerServerCallback('nl_fitbit:server:setValue', function(tabla)
+                    -- ESX.TriggerServerCallback('nl_fitbit:getStats', function(tabla)
 
-                        if tabla.food then
-                            if food < tabla.food then
+                    --     if tabla.food then
+                    --         if food < tabla.food then
 
-                                TriggerServerEvent('InteractSound_SV:PlayOnSource', 'vibracion', 1.0)		
-                                Wait(3100)
+                    --             TriggerServerEvent('InteractSound_SV:PlayOnSource', 'vibracion', 1.0)		
+                    --             Wait(3100)
 
-                                ESX.UI.Speech('Tu comida es menor a '..tabla.food.."%", 'mujer', 1.0)
-                            end
-                        end
+                    --             ESX.UI.Speech('Tu comida es menor a '..tabla.food.."%", 'mujer', 1.0)
+                    --         end
+                    --     end
             
-                        if tabla.thirst then
-                            if thirst <tabla.thirst then
-                                TriggerServerEvent('InteractSound_SV:PlayOnSource', 'vibracion', 1.0)		
-                                Wait(3100)
+                    --     if tabla.thirst then
+                    --         if thirst <tabla.thirst then
+                    --             TriggerServerEvent('InteractSound_SV:PlayOnSource', 'vibracion', 1.0)		
+                    --             Wait(3100)
 
-                                ESX.UI.Speech('Tu bebida es menor a '..tabla.thirst.."%", 'mujer', 1.0)
-                            end
-                        end
-                    end)
+                    --             ESX.UI.Speech('Tu bebida es menor a '..tabla.thirst.."%", 'mujer', 1.0)
+                    --         end
+                    --     end
+                    -- end)
                 end
             end, "ewatch")
         end
@@ -302,7 +302,7 @@ RegisterNUICallback('setFoodWarning', function(data)
 
     TriggerServerEvent('nl_fitbit:server:setValue', 'food', foodValue)
 
-    ESX.ShowNotification('FigurasRP: Alarma de comida añadida al '..foodValue..'%')
+    ESX.ShowNotification('Alarma de comida añadida al '..foodValue..'%')
 end)
 
 RegisterNUICallback('setThirstWarning', function(data)
@@ -310,12 +310,12 @@ RegisterNUICallback('setThirstWarning', function(data)
 
     TriggerServerEvent('nl_fitbit:server:setValue', 'thirst', thirstValue)
 
-    ESX.ShowNotification('FigurasRP: Alarma de bebida añadida al '..thirstValue..'%')
+    ESX.ShowNotification('Alarma de bebida añadida al '..thirstValue..'%')
 end)
 
 RegisterNUICallback('setStepCount', function(data)
 
-    ESX.ShowNotification('FigurasRP: Contador de pasos reseteados')
+    ESX.ShowNotification('Contador de pasos reseteados')
 
     StatSetFloat(`mp0_dist_walking`, 0.0, true)
     StatSetFloat(`mp0_dist_running`, 0.0, true)
@@ -337,10 +337,10 @@ RegisterNUICallback('toggleHud', function(data)
     TriggerServerEvent('nl_fitbit:server:setValue', 'hud', hudToggle)
     if hudToggle then
         ExecuteCommand("hud")
-        ESX.ShowNotification('FigurasRP: HUD desactivado')
+        ESX.ShowNotification('HUD desactivado')
     else
         ExecuteCommand("hud")
-        ESX.ShowNotification('FigurasRP: HUD activado')
+        ESX.ShowNotification('HUD activado')
     end
 end)
 

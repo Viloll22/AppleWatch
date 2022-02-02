@@ -127,7 +127,7 @@ end)
 
 function UpdatePlayerTable(connectedPlayers)
 	local formattedPlayerList, num = {}, 1
-	local ems, police, taxi, mechanic, tendero, taxi, tallernorte, marihuanero, players = 0, 0, 0, 0, 0, 0, 0, 0, 0 -- Añadir aqui los trabajos
+	local ems, police, taxi, mechanic, soa, taxi, tallernorte, marihuanero, players = 0, 0, 0, 0, 0, 0, 0, 0, 0 -- Añadir aqui los trabajos
 
 
 	for k,v in pairs(connectedPlayers) do
@@ -163,10 +163,10 @@ function UpdatePlayerTable(connectedPlayers)
 				mechanic = '+3'
 			end
 
-		elseif v.job == 'tendero' then
+		elseif v.job == 'soa' then
 			tendero = tendero + 1
 			if tendero > 2 then
-				tendero = '+2'
+				tendero = '+7'
 			end
 		end
 	end
@@ -270,7 +270,7 @@ Citizen.CreateThread(function()
                          thirst = status.val / 10000 
                     end)
 
-                    ESX.TriggerServerCallback('nl_fitbit:getStats', function(tabla)
+                    ESX.TriggerServerCallback('nl_fitbit:server:setValue', function(tabla)
 
                         if tabla.food then
                             if food < tabla.food then
